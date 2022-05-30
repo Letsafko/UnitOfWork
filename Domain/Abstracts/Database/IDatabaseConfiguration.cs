@@ -1,4 +1,4 @@
-namespace Domain.Abstracts
+namespace Domain.Abstracts.Database
 {
     public interface IDatabaseConfiguration
     {

@@ -1,4 +1,7 @@
-﻿using NFluent;
+﻿using Domain.Abstracts.Database;
+using Infrastructure.Database;
+using NFluent;
+using Tools.Common.Test;
 using Xunit;
 namespace Infrastructure.Test
 {
@@ -26,7 +29,7 @@ namespace Infrastructure.Test
         public void Commit_should_validate_changes_and_dispose_connection_and_transaction()
         {
             //arrange
-            UnitOfWork unitOfWork;
+            IUnitOfWork unitOfWork;
             using (unitOfWork = UnitOfWorkBuilder
                        .Instance
                        .WithConnectionFactory<DatabaseConfiguration>()
@@ -47,7 +50,7 @@ namespace Infrastructure.Test
         public void Rollback_should_undo_changes_and_dispose_connection_and_transaction()
         {
             //arrange
-            UnitOfWork unitOfWork;
+            IUnitOfWork unitOfWork;
             using (unitOfWork = UnitOfWorkBuilder
                        .Instance
                        .WithConnectionFactory<DatabaseConfiguration>()

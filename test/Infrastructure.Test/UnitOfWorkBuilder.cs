@@ -1,8 +1,10 @@
 using System.Data;
-using Domain.Abstracts;
+using Domain.Abstracts.Database;
+using Infrastructure;
+using Infrastructure.Database;
 using Moq;
 
-namespace Infrastructure.Test
+namespace Tools.Common.Test
 {
     public sealed class UnitOfWorkBuilder
     {
@@ -19,7 +21,7 @@ namespace Infrastructure.Test
 
         public static UnitOfWorkBuilder Instance => new UnitOfWorkBuilder();
 
-        public UnitOfWork Build()
+        public IUnitOfWork Build()
         {
             return new UnitOfWork(_connectionFactory.Object);
         }

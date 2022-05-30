@@ -1,12 +1,12 @@
-using Domain.Abstracts;
 using System;
 using System.Data;
-using System.Data.SqlClient;
 using System.Diagnostics.CodeAnalysis;
+using Domain.Abstracts.Database;
+using Microsoft.Data.Sqlite;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 
-namespace Infrastructure
+namespace Infrastructure.Database
 {
     [ExcludeFromCodeCoverage]
     public sealed class ConnectionFactory : IConnectionFactory
@@ -33,14 +33,14 @@ namespace Infrastructure
         /// <returns><see cref="IDbConnection"/></returns>
         public IDbConnection CreateConnection<T>() where T : class, IDatabaseConfiguration, new()
         {
-            SqlConnection connection = default;
+            SqliteConnection connection = default;
             try
             {
                 var configuration = _provider.GetRequiredService<IOptions<T>>();
                 if (string.IsNullOrWhiteSpace(configuration?.Value?.ConnectionString))
                     throw new InvalidOperationException($"missing configuration for {typeof(T).Name}");
 
-                connection = new SqlConnection(configuration.Value.ConnectionString);
+                connection = new SqliteConnection(configuration.Value.ConnectionString);
                 connection.Open();
                 return connection;
             }

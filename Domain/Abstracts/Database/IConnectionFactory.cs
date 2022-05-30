@@ -1,6 +1,6 @@
 using System.Data;
 
-namespace Domain.Abstracts
+namespace Domain.Abstracts.Database
 {
     public interface IConnectionFactory
     {

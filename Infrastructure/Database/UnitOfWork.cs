@@ -1,8 +1,8 @@
 using System;
 using System.Data;
-using Domain.Abstracts;
+using Domain.Abstracts.Database;
 
-namespace Infrastructure
+namespace Infrastructure.Database
 {
     public sealed class UnitOfWork : IUnitOfWork
     {
