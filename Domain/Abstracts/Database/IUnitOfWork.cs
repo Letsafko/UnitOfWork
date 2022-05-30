@@ -1,8 +1,7 @@
-namespace Domain.Abstracts
+using System;
+using System.Data;
+namespace Domain.Abstracts.Database
 {
-    using System;
-    using System.Data;
-
     public interface IUnitOfWork : IDisposable
     {
         IDbTransaction Transaction { get; }
